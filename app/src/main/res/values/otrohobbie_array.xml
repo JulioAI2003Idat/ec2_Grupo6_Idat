@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="otro_hobbie_array_list">
+        <item>Seleccione</item>
+        <item>Ver Peliculas</item>
+        <item>Natacion</item>
+        <item>Dormir</item>
+    </string-array>
+</resources>

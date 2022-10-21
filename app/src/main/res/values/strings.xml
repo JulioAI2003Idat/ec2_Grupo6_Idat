@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ec2_Grupo6</string>
+    <string name="regis">REGISTRO</string>
+    <string name="formu">FORMULARIO</string>
+    <string name="list">LISTADO</string>
+    <string name="access">Acceder</string>
+</resources>
