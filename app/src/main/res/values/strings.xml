@@ -4,4 +4,28 @@
     <string name="formu">FORMULARIO</string>
     <string name="list">LISTADO</string>
     <string name="access">Acceder</string>
+
+    <string name="tituloFormulario">Formulario</string>
+
+    <string name="valtituloformulario">CUESTIONARIO COVID-19</string>
+    <string name="valpregunta1">1. Marca tus sintomas</string>
+    <string name="valcbdisminucion">Disminucion del gusto o del ólfato.</string>
+    <string name="valcbtos">Tos</string>
+    <string name="valcbdolorgarganta">Dolor de garganta</string>
+    <string name="valcbcongestionnasal">Congestion nasal</string>
+    <string name="valcbfiebre">Fiebre</string>
+    <string name="valcbninguno">Ninguno</string>
+    <string name="valpregunta2">2. ¿Tienes fiebre mayor a 37 grados?</string>
+    <string name="valrbsi">Si</string>
+    <string name="valrbno">No</string>
+    <string name="valpregunta3">3. ¿Vives solo en casa?</string>
+    <string name="valpregunta4">4. ¿Vives con un adulto mayor en casa?</string>
+    <string name="valpregunta5">5. ¿Cuentas con los siguientes servicios en casa?</string>
+    <string name="valcbluz">Luz</string>
+    <string name="valcbagua">Agua</string>
+    <string name="valcbinternet">Internet</string>
+    <string name="valcbcable">Cable</string>
+    <string name="valbtnresolver">Resolver</string>
+    <string name="valbtnlistar">Listar Formulario</string>
+
 </resources>
