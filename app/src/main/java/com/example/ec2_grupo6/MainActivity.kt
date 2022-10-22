@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun irListado() {
-        val intent = Intent(this, ListadoActivity::class.java)
+        val intent = Intent(this, ListadoLibrosActivity::class.java)
         startActivity(intent)
     }
 
