@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="snackbarerror">#CC0909</color>
     <color name="snackbarsucces">#33CD08</color>
+    <color name="snackbaralerta">#0839CD</color>
 </resources>

@@ -15,6 +15,10 @@ object AppMensaje {
             snackbarView.setBackgroundColor(
                 ContextCompat.getColor(MiApp.instance,R.color.snackbarerror)
             )
+        }else if (tipo == TipoMensaje.ALERTA){
+            snackbarView.setBackgroundColor(
+                ContextCompat.getColor(MiApp.instance,R.color.snackbaralerta)
+            )
         }else{
             snackbarView.setBackgroundColor(
                 ContextCompat.getColor(MiApp.instance,R.color.snackbarsucces)
