@@ -9,9 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import com.example.ec2_grupo6.commom.AppMensaje
 import com.example.ec2_grupo6.commom.TipoMensaje
-import com.example.ec2_grupo6.dao.PacienteService
 import com.example.ec2_grupo6.databinding.ActivityRegistroBinding
-import com.example.ec2_grupo6.model.Paciente
 
 class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 

@@ -4,8 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.ec2_grupo6.dao.PacienteDao
-import com.example.ec2_grupo6.dao.PacienteService
 import com.example.ec2_grupo6.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun irListado() {
-        val intent = Intent(this, ListadoActivity::class.java)
+        val intent = Intent(this, ListadoLibrosActivity::class.java)
         startActivity(intent)
     }
 
