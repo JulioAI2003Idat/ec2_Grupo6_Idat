@@ -15,7 +15,6 @@ class LibrosAdapter(private val mContext: Context, private val listaLibros: List
 
         val producto = listaLibros[position]
 
-        layout.txv
 
         return layout
     }
