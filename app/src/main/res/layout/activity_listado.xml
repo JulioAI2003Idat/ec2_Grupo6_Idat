@@ -3,13 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_margin="15dp"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
     tools:context=".ListadoActivity">
+
+    <TextView
+        android:id="@+id/tvtitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESULTADOS"
+        android:textAlignment="center"
+        android:textColor="#673AB7"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/lvpacientes"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </LinearLayout>

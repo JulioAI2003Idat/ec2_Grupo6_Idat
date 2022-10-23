@@ -9,7 +9,8 @@ import com.example.ec2_grupo6.R
 import com.example.ec2_grupo6.model.Libro
 import kotlinx.android.synthetic.main.item_libro.view.*
 
-class LibrosAdapter(private val mContext:Context, private val listalibros:List<Libro>): ArrayAdapter<Libro>(mContext,0,listalibros) {
+class LibrosAdapter(private val mContext:Context, private val listalibros:List<Libro>):
+    ArrayAdapter<Libro>(mContext,0,listalibros) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layout = LayoutInflater.from(mContext).inflate(R.layout.item_libro,parent,false)

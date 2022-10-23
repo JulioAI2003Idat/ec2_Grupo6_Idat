@@ -15,7 +15,7 @@ import com.example.ec2_grupo6.databinding.ActivityRegistroBinding
 class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityRegistroBinding
-    private val listapacientes = ArrayList<String>()
+    private val listapacientes = ArrayList<List<String>>()
     private val listapreferencias = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,16 +41,19 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
 
     private fun RegistroPaciente() {
         if (validarRegistro()){
-            var paciente = "Nombres y apellidos: ${binding.etnombre.text} ${binding.etapellido.text}\n" +
-                    "DNI: ${binding.etdni.text}\n" +
-                    "Correo: ${binding.etemail.text}\n" +
-                    "Contraseña: ${binding.etpassword.text}\n" +
-                    "Género: ${obtenerGeneroSeleccionado()}\n" +
-                    "Hobbies:\n${listapreferencias}\n" +
-                    "Otro hobby: ${binding.ethobby.text}"
-            listapacientes.add(paciente)
+            var nombres = "Nombres y apellidos: ${binding.etnombre.text} ${binding.etapellido.text}"
+            var dni = "DNI: ${binding.etdni.text}"
+            var correo = "Correo: ${binding.etemail.text}"
+            var password = "Contraseña: ${binding.etpassword.text}"
+            var genero = "Género: ${obtenerGeneroSeleccionado()}"
+            var hobbies = "Hobbies: ${listapreferencias}"
+            var hobby = "Otro hobby: ${binding.ethobby.text}"
+
+            var resultado = listOf(nombres, dni, correo, password, genero, hobbies, hobby)
+            listapacientes.add(resultado)
+
             var intent = Intent(this,ListadoActivity::class.java).apply {
-                putExtra("listapacientes",listapacientes)
+                putExtra("listaresultados",listapacientes)
             }
             startActivity(intent)
 

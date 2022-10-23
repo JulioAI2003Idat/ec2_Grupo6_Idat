@@ -9,7 +9,7 @@
 
     <string name="valtituloformulario">CUESTIONARIO COVID-19</string>
     <string name="valpregunta1">1. Marca tus sintomas</string>
-    <string name="valcbdisminucion">Disminucion del gusto o del ólfato.</string>
+    <string name="valcbdisminucion">Disminucion del gusto o del olfato</string>
     <string name="valcbtos">Tos</string>
     <string name="valcbdolorgarganta">Dolor de garganta</string>
     <string name="valcbcongestionnasal">Congestion nasal</string>

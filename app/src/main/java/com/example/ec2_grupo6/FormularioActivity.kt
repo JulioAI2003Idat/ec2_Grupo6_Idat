@@ -13,7 +13,7 @@ class FormularioActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityFormularioBinding
 
-    private var listarFormulario = ArrayList<String>()
+    private var listarFormulario = ArrayList<List<String>>()
     private var listarSintomas = ArrayList<String>()
     private var listarServicios = ArrayList<String>()
 
@@ -61,18 +61,24 @@ class FormularioActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun resolviendoFormulario() {
         if (validacionFormulario()) {
-            val datosFormulario = "Los Sintomas son:\n${listarSintomas.toString()}\n" +
-                    "Fiebre mayor a 37°: ${respuestaFiebre()}\n" +
-                    "Vives solo en casa: ${respuestaVivirSolo()}\n" +
-                    "Vives con un adulto mayor: ${respuestaVivesConAdulto()}\n" +
-                    "Servicios en el hogar: \n${listarServicios.toString()}"
-            listarFormulario.add(datosFormulario)
+            var titulo = "Los síntomas son:"
+            var sintomas = "${listarSintomas}"
+            var fiebre = "Fiebre mayor a 37°: ${respuestaFiebre()}"
+            var vive = "Vive solo en casa: ${respuestaVivirSolo()}"
+            var adultom = "Vive con un adulto mayor: ${respuestaVivesConAdulto()}"
+            var servicios = "Servicios en el hogar:"
+            var servicios2 = "${listarServicios}"
+
+            var resultado = listOf(titulo, sintomas, fiebre, vive, adultom, servicios, servicios2)
+            listarFormulario.add(resultado)
+
             AppMensaje.enviarMensaje(binding.root,"Se guardaron los datos correctamente.", TipoMensaje.SUCCESSFULL)
             limpiarFormulario()
+
             val intentFormulario = Intent(
                 this, ListadoActivity::class.java
             ).apply {
-                putExtra("listapacientes", listarFormulario)
+                putExtra("listaresultados", listarFormulario)
             }
             startActivity(intentFormulario)
         }
