@@ -105,17 +105,13 @@
         android:layout_height="wrap_content"
         android:text="Otro" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <EditText
+        android:id="@+id/ethobby"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingrese otro hobby:" />
-
-    <Spinner
-        android:id="@+id/otrosHobbies"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible" />
+        android:ems="10"
+        android:hint="Ingrese otro hobby"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/btnacceder"

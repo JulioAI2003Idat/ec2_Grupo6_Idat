@@ -36,7 +36,6 @@ class FormularioActivity : AppCompatActivity(), View.OnClickListener {
         binding.cbcable.setOnClickListener(this)
 
         binding.btnresolver.setOnClickListener(this)
-        binding.btnlistar.setOnClickListener(this)
 
     }
 
@@ -56,7 +55,6 @@ class FormularioActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             when (view.id) {
                 binding.btnresolver.id -> resolviendoFormulario()
-                binding.btnlistar.id -> listaFormulario()
             }
         }
     }
@@ -71,16 +69,13 @@ class FormularioActivity : AppCompatActivity(), View.OnClickListener {
             listarFormulario.add(datosFormulario)
             AppMensaje.enviarMensaje(binding.root,"Se guardaron los datos correctamente.", TipoMensaje.SUCCESSFULL)
             limpiarFormulario()
+            val intentFormulario = Intent(
+                this, ListadoActivity::class.java
+            ).apply {
+                putExtra("listapacientes", listarFormulario)
+            }
+            startActivity(intentFormulario)
         }
-    }
-
-    private fun listaFormulario() {
-        val intentFormulario = Intent(
-            this, ListadoActivity::class.java
-        ).apply {
-            putExtra("listapacientes", listarFormulario)
-        }
-        startActivity(intentFormulario)
     }
 
     private fun limpiarFormulario() {

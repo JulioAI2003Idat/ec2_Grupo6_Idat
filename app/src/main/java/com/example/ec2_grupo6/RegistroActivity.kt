@@ -11,39 +11,22 @@ import com.example.ec2_grupo6.commom.AppMensaje
 import com.example.ec2_grupo6.commom.TipoMensaje
 //import com.example.ec2_grupo6.dao.PacienteService
 import com.example.ec2_grupo6.databinding.ActivityRegistroBinding
-//import com.example.ec2_grupo6.model.Paciente
 
 class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityRegistroBinding
     private val listapacientes = ArrayList<String>()
     private val listapreferencias = ArrayList<String>()
-    private var otroHobbies =""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ArrayAdapter.createFromResource(this,
-        R.array.otro_hobbie_array_list,
-        android.R.layout.simple_spinner_item).also {
-            adapter ->
-            adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item)
-            binding.otrosHobbies.adapter = adapter
-
-
-
-        }
-
         binding.chkdeporte.setOnClickListener(this)
         binding.chkpintura.setOnClickListener(this)
         binding.chkotro.setOnClickListener(this)
-        binding.otrosHobbies.onItemSelectedListener = this
         binding.btnacceder.setOnClickListener(this)
-
-
     }
 
     override fun onClick(view: View) {
@@ -58,20 +41,21 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
 
     private fun RegistroPaciente() {
         if (validarRegistro()){
-            /*var paciente =Paciente(binding.etnombre.text.toString(),binding.etapellido.text.toString(),binding.etdni.text.toString().toInt(),
-                binding.etemail.text.toString(),binding.etpassword.text.toString(),obtenerGeneroSeleccionado(),listapreferencias.toString())
-            paciente*/
-            var paciente = binding.etnombre.text.toString()+" "+binding.etapellido.text.toString()+" "+binding.etdni.text.toString()+""+
-                    binding.etemail.text.toString()+" "+binding.etpassword.text.toString()+" "+ obtenerGeneroSeleccionado() +" "+listapreferencias.toString()
+            var paciente = "Nombres y apellidos: ${binding.etnombre.text} ${binding.etapellido.text}\n" +
+                    "DNI: ${binding.etdni.text}\n" +
+                    "Correo: ${binding.etemail.text}\n" +
+                    "Contraseña: ${binding.etpassword.text}\n" +
+                    "Género: ${obtenerGeneroSeleccionado()}\n" +
+                    "Hobbies:\n${listapreferencias}\n" +
+                    "Otro hobby: ${binding.ethobby.text}"
             listapacientes.add(paciente)
             var intent = Intent(this,ListadoActivity::class.java).apply {
                 putExtra("listapacientes",listapacientes)
             }
             startActivity(intent)
 
-            AppMensaje.enviarMensaje(binding.root,"Persona Registrada correctamente",TipoMensaje.SUCCESSFULL)
+            AppMensaje.enviarMensaje(binding.root,"Persona registrada correctamente",TipoMensaje.SUCCESSFULL)
             Reiniciarformulario()
-
         }
     }
 
@@ -82,13 +66,13 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
         binding.etdni.setText("")
         binding.etemail.setText("")
         binding.etpassword.setText("")
+        binding.ethobby.setText("")
         binding.chkdeporte.isChecked = false
         binding.chkpintura.isChecked = false
         binding.chkotro.isChecked = false
         binding.radioGroup.clearCheck()
-        binding.otrosHobbies.setSelection(0)
-        binding.etnombre.isFocusableInTouchMode = true
-        binding.etnombre.requestFocus()
+        binding.etdni.isFocusableInTouchMode = true
+        binding.etdni.requestFocus()
     }
 
     private fun obtenerGeneroSeleccionado():String {
@@ -98,54 +82,40 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
             R.id.rbmujer -> genero = binding.rbmujer.text.toString()
         }
         return genero
-
     }
 
     private fun validarRegistro(): Boolean {
         var rpta = false
         if (!validarDni()){
-            AppMensaje.enviarMensaje(binding.root,"Ingrese el DNI",TipoMensaje.ERROR)
+            AppMensaje.enviarMensaje(binding.root,"Ingrese el DNI, o verifique el n° de dígitos",TipoMensaje.ERROR)
         }else if (!validarNombreApellido()){
             AppMensaje.enviarMensaje(binding.root,"Ingrese nombre y apellidos",TipoMensaje.ERROR)
-            //Toast.makeText(this,"Ingresa el nombre", Toast.LENGTH_SHORT).show()
         }else if (!validarEmail()){
             AppMensaje.enviarMensaje(binding.root,"Ingrese el email",TipoMensaje.ERROR)
-            //Toast.makeText(this,"Ingresa el nombre", Toast.LENGTH_SHORT).show()
         }else if (!validarPassword()){
             AppMensaje.enviarMensaje(binding.root,"Ingrese la contraseña",TipoMensaje.ERROR)
-            //Toast.makeText(this,"Ingresa el nombre", Toast.LENGTH_SHORT).show()
         }else if (!validarGenero()){
             AppMensaje.enviarMensaje(binding.root,"Seleccione su Sexo",TipoMensaje.ERROR)
-        }else if (!validarHobbie()){
-            AppMensaje.enviarMensaje(binding.root,"Seleccione su Hobbie",TipoMensaje.ERROR)
         }else if (!validarPreferencias()){
-            AppMensaje.enviarMensaje(binding.root,"Seleccione una preferencia",TipoMensaje.ERROR)
+            AppMensaje.enviarMensaje(binding.root,"Seleccione un hobby",TipoMensaje.ERROR)
+        }else if (!validarHobbie()){
+            AppMensaje.enviarMensaje(binding.root,"Ingrese un hobby adicional",TipoMensaje.ERROR)
         }else{
             rpta = true
         }
         return  rpta
-
-
-
     }
 
-
-
-
-
-
-
-
+//--------------------------VALIDACIONES------------------------------
 
     private fun validarDni(): Boolean {
         var rpta = true
-        if (binding.etdni.text.trim().isEmpty()){
+        if (binding.etdni.text.trim().isEmpty() || binding.etdni.length() != 8){
             binding.etdni.isFocusableInTouchMode = true
             binding.etdni.requestFocus()
             rpta = false
 
         }
-
         return  rpta
     }
 
@@ -162,7 +132,6 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
             rpta = false
         }
         return  rpta
-
     }
 
     private fun validarEmail(): Boolean {
@@ -171,9 +140,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
             binding.etemail.isFocusableInTouchMode = true
             binding.etemail.requestFocus()
             rpta = false
-
         }
-
         return  rpta
     }
 
@@ -183,9 +150,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
             binding.etpassword.isFocusableInTouchMode = true
             binding.etpassword.requestFocus()
             rpta = false
-
         }
-
         return  rpta
     }
 
@@ -207,7 +172,9 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
 
     private fun validarHobbie(): Boolean {
         var rpta= true
-        if (otroHobbies == ""){
+        if (binding.ethobby.text.trim().isEmpty()){
+            binding.ethobby.isFocusableInTouchMode = true
+            binding.ethobby.requestFocus()
             rpta=false
         }
         return rpta
@@ -222,14 +189,8 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
     }
 
     override fun onItemSelected(adapter: AdapterView<*>?, view: View?, position: Int, p3: Long) {
-        otroHobbies = if (position > 0){
-            adapter!!.getItemAtPosition(position).toString()
-        }else{
-            ""
-        }
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-
     }
 }
