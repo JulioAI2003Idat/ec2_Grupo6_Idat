@@ -70,6 +70,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
         binding.etemail.setText("")
         binding.etpassword.setText("")
         binding.ethobby.setText("")
+        binding.ethobby.isEnabled=false
         binding.chkdeporte.isChecked = false
         binding.chkpintura.isChecked = false
         binding.chkotro.isChecked = false
@@ -175,7 +176,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
 
     private fun validarHobbie(): Boolean {
         var rpta= true
-        if (binding.ethobby.text.trim().isEmpty()){
+        if (binding.ethobby.text.trim().isEmpty() && binding.chkotro.isChecked){
             binding.ethobby.isFocusableInTouchMode = true
             binding.ethobby.requestFocus()
             rpta=false
@@ -184,10 +185,14 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener, AdapterView.
     }
 
     private fun agregarQuitarPreferencias(checkBox: CheckBox) {
-        if (checkBox.isChecked){
-            listapreferencias.add(checkBox.text.toString())
+        if (checkBox.text=="Otro"){
+            binding.ethobby.isEnabled = checkBox.isChecked
         }else{
-            listapreferencias.remove(checkBox.text.toString())
+            if (checkBox.isChecked){
+                listapreferencias.add(checkBox.text.toString())
+            }else{
+                listapreferencias.remove(checkBox.text.toString())
+            }
         }
     }
 
